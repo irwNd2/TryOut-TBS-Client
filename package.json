@@ -29,8 +29,8 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
-      "npm prettier --write",
-      "npm eslint --fix"
+      "npx prettier --write",
+      "npx eslint --fix"
     ]
   }
 }
