@@ -1,13 +1,16 @@
 <template>
-  <div>
-    <label class="block text-sm text-gray-700">{{ props.label }}</label>
+  <div class="w-auto md:w-96">
+    <label class="block text-sm text-gray-700 dark:text-white">{{ props.label }}</label>
     <div class="relative">
       <input
         :type="props.type"
-        class="w-full rounded-lg p-4 pr-12 text-sm shadow-sm"
+        class="w-full rounded-lg p-3 pr-12 text-sm shadow-sm border dark:bg-gray-700"
         :placeholder="props.placeholder"
         v-model="model"
-        :class="{ 'border-red-500': errorMessage, 'border-gray-200': !errorMessage }"
+        :class="{
+          'border-red-500': errorMessage,
+          'border-gray-200 dark:border-gray-700 focus:border-gray-200': !errorMessage
+        }"
       />
       <span class="absolute inset-y-0 right-0 grid place-content-center px-4">
         <slot name="icon"></slot>
