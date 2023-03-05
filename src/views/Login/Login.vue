@@ -24,24 +24,24 @@ const schema = yup.object({
 </script>
 
 <template>
-  <div>
+  <div class="bg-sky-900">
     <div class="flex justify-end dark:bg-gray-700">
       <button @click="toggleDark()">Dark Mode</button>
     </div>
-    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 dark:bg-gray-700">
+    <div
+      class="mx-auto max-w-screen-xl px-4 py-16 md:py-6 sm:px-6 lg:px-8 dark:bg-gray-700 h-screen"
+    >
       <div class="mx-auto max-w-lg md:w-min">
-        <h1 class="text-center text-2xl font-bold text-indigo-500 sm:text-3xl">
-          Get started today
-        </h1>
+        <h1 class="text-center text-2xl font-bold sm:text-3xl">Get started today</h1>
 
-        <p class="mx-auto mt-4 max-w-md text-center text-gray-500">
+        <p class="mx-auto mt-4 max-w-md text-center text-black dark:text-white">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati sunt dolores deleniti
           inventore quaerat mollitia?
         </p>
 
         <Form
           :validation-schema="schema"
-          class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 dark:bg-gray-800 w-full md:w-min"
+          class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 dark:bg-gray-800 w-full md:w-min bg-white"
         >
           <p class="text-center text-lg font-medium dark:text-white">Masuk ke akun anda</p>
 
@@ -94,7 +94,7 @@ const schema = yup.object({
           </InputText>
           <button
             type="submit"
-            class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white md:w-96"
+            class="block w-full rounded-lg bg-sky-900 px-5 py-3 text-sm font-medium text-white md:w-96"
           >
             Masuk
           </button>

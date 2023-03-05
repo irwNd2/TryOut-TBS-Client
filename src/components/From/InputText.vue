@@ -1,6 +1,6 @@
 <template>
   <div class="w-auto md:w-96">
-    <label class="block text-sm text-gray-700 dark:text-white">{{ props.label }}</label>
+    <label class="block text-sm text-gray-700 dark:text-white mb-1">{{ props.label }}</label>
     <div class="relative">
       <input
         :type="props.type"
