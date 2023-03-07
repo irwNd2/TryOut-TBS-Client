@@ -66,20 +66,21 @@ const schema = yup.object({
     </div>
     <div class="mx-auto max-w-screen-xl px-4 py-16 md:py-6 sm:px-6 lg:px-8 dark:bg-gray-700">
       <div class="mx-auto max-w-lg md:w-min">
-        <h1 class="text-center text-2xl font-bold sm:text-3xl">Get started today</h1>
+        <h1 class="text-center text-2xl font-bold sm:text-3xl text-black dark:text-white">
+          TRYOUT TBS
+        </h1>
 
         <p class="mx-auto mt-4 max-w-md text-center text-black dark:text-white">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati sunt dolores deleniti
-          inventore quaerat mollitia?
+          Selamat datang di Tryout TBS, silahkan masuk ke akun anda.
         </p>
 
         <Form
           :validation-schema="schema"
           class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 dark:bg-gray-800 w-full md:w-min bg-white"
         >
-          <p class="text-center text-lg font-medium dark:text-white">Masuk ke akun anda</p>
+          <p class="text-center text-lg font-medium dark:text-white">Login</p>
 
-          <InputText label="Email:" type="email" placeholder="Masukkan email" v-model="form.email">
+          <InputText label="Email" type="email" placeholder="Masukkan email" v-model="form.email">
             <template v-slot:icon>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +99,7 @@ const schema = yup.object({
             </template>
           </InputText>
           <InputText
-            label="Kata Sandi:"
+            label="Kata Sandi"
             type="password"
             placeholder="Masukkan kata sandi"
             v-model="form.password"
@@ -139,6 +140,9 @@ const schema = yup.object({
           </p>
         </Form>
       </div>
+    </div>
+    <div class="flex justify-center text-center mt-6">
+      <h2 class="text-black dark:text-white">Made with 💕 by Irwansyah</h2>
     </div>
   </div>
 </template>

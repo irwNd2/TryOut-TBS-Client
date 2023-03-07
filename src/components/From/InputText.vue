@@ -4,12 +4,12 @@
     <div class="relative">
       <input
         :type="props.type"
-        class="w-full rounded-lg p-3 pr-12 text-sm shadow-sm border dark:bg-gray-700"
+        class="w-full rounded-lg p-3 pr-12 text-sm shadow-sm border dark:bg-gray-700 text-black dark:text-white"
         :placeholder="props.placeholder"
         v-model="model"
         :class="{
           'border-red-500': errorMessage,
-          'border-gray-200 dark:border-gray-700 focus:border-gray-200': !errorMessage
+          'border-gray-200 dark:border-gray-700': !errorMessage
         }"
       />
       <span class="absolute inset-y-0 right-0 grid place-content-center px-4">
