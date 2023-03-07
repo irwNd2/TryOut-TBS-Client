@@ -2,7 +2,7 @@
 import * as yup from 'yup'
 import { ref, defineComponent } from 'vue'
 import { Form } from 'vee-validate'
-import InputText from '../../components/From/InputText.vue'
+import InputText from '@/components/From/InputText.vue'
 import { useDark, useToggle } from '@vueuse/core'
 
 defineComponent({
@@ -24,13 +24,47 @@ const schema = yup.object({
 </script>
 
 <template>
-  <div class="bg-sky-900">
-    <div class="flex justify-end dark:bg-gray-700">
-      <button @click="toggleDark()">Dark Mode</button>
+  <div class="bg-sky-300 dark:bg-gray-700 flex flex-col mx-auto max-w-screen-2xl w-screen h-screen">
+    <div class="w-full flex justify-end">
+      <div
+        class="mt-2 mr-2 w-[58px] h-[30px] bg-gray-200 dark:bg-gray-500 rounded-2xl shadow-lg cursor-pointer"
+        @click="toggleDark()"
+      >
+        <div class="w-full flex justify-between">
+          <div>
+            <transition name="light">
+              <div
+                class="w-[28px] h-[28px] rounded-2xl bg-slate-300 mt-[1.2px] ml-[1px]"
+                v-if="!isDark"
+              >
+                <Icon
+                  icon="ic:twotone-light-mode"
+                  class="text-yellow-600 cursor-pointer ml-[1px] mt-[1px]"
+                  width="25"
+                >
+                </Icon>
+              </div>
+            </transition>
+          </div>
+          <div>
+            <transition name="dark">
+              <div
+                class="w-[28px] h-[28px] rounded-2xl bg-gray-600 mr-[1px] mt-[1px]"
+                v-if="isDark"
+              >
+                <Icon
+                  icon="ic:twotone-dark-mode"
+                  class="text-black cursor-pointer ml-[1.5px] mt-[1px]"
+                  width="25"
+                >
+                </Icon>
+              </div>
+            </transition>
+          </div>
+        </div>
+      </div>
     </div>
-    <div
-      class="mx-auto max-w-screen-xl px-4 py-16 md:py-6 sm:px-6 lg:px-8 dark:bg-gray-700 h-screen"
-    >
+    <div class="mx-auto max-w-screen-xl px-4 py-16 md:py-6 sm:px-6 lg:px-8 dark:bg-gray-700">
       <div class="mx-auto max-w-lg md:w-min">
         <h1 class="text-center text-2xl font-bold sm:text-3xl">Get started today</h1>
 
@@ -108,3 +142,31 @@ const schema = yup.object({
     </div>
   </div>
 </template>
+
+<style>
+.dark-leave-from {
+  opacity: 1;
+}
+
+.dark-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.dark-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.light-leave-from {
+  opacity: 1;
+}
+
+.light-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.light-leave-active {
+  transition: all 0.2s ease-out;
+}
+</style>
