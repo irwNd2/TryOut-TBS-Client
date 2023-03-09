@@ -4,6 +4,7 @@ import { ref, defineComponent } from 'vue'
 import { Form } from 'vee-validate'
 import InputText from '@/components/From/InputText.vue'
 import { useDark, useToggle } from '@vueuse/core'
+import { useAuthStore } from '@/stores/auth'
 
 defineComponent({
   name: 'LoginPage'
@@ -16,6 +17,23 @@ const form = ref({
   email: '',
   password: ''
 })
+
+const loader = ref(false)
+
+const loginHandler = async () => {
+  loader.value = true
+  const { email, password } = form.value
+  const { login } = useAuthStore()
+  try {
+    const { data } = await login({ email, password })
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+    loader.value = false
+  } finally {
+    loader.value = false
+  }
+}
 
 const schema = yup.object({
   Email: yup.string().email().required(),
@@ -71,11 +89,12 @@ const schema = yup.object({
         </h1>
 
         <p class="mx-auto mt-4 max-w-md text-center text-black dark:text-white">
-          Selamat datang di Tryout TBS, silahkan masuk ke akun anda.
+          Selamat datang di website Tryout TBS, silahkan masuk ke akun anda.
         </p>
 
         <Form
           :validation-schema="schema"
+          @submit="loginHandler"
           class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 dark:bg-gray-800 w-full md:w-min bg-white"
         >
           <p class="text-center text-lg font-medium dark:text-white">Login</p>
@@ -129,9 +148,11 @@ const schema = yup.object({
           </InputText>
           <button
             type="submit"
-            class="block w-full rounded-lg bg-sky-900 px-5 py-3 text-sm font-medium text-white md:w-96"
+            :disabled="loader"
+            class="flex w-full rounded-lg bg-sky-900 px-5 py-3 text-sm font-medium text-white md:w-96 justify-center items-center text-center"
           >
-            Masuk
+            <Icon v-if="loader" icon="eos-icons:loading" color="white" width="24"> </Icon>
+            <span v-if="!loader">Masuk</span>
           </button>
 
           <p class="text-center text-sm text-gray-500 dark:text-white">

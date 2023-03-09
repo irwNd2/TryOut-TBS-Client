@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Login from '@/views/Login/Login.vue'
-import LandingHome from '@/views/LandingPage/LandingHome.vue'
-import Home from '@/views/Home/Home.vue'
+
+const Login = () => import('@/views/Login/Login.vue')
+const LandingHome = () => import('@/views/LandingHome/LandingHome.vue')
+const Home = () => import('@/views/Home/Home.vue')
 
 const router = createRouter({
   history: createWebHashHistory(),

@@ -66,7 +66,7 @@
               </div>
 
               <div class="hidden sm:flex sm:mt-2">
-                <h2 class="dark:text-white">{{ name }}</h2>
+                <h2 class="dark:text-white">{{ nameFinal() }}</h2>
                 <span>
                   <Icon
                     icon="material-symbols:keyboard-arrow-down"
@@ -87,10 +87,22 @@
 <script setup>
 import { defineComponent } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
+import { useAuthStore } from '@/stores/auth'
 
 defineComponent({
   name: 'HeaderComponent'
 })
+
+const { user } = useAuthStore()
+const splittedName = user?.name.split(' ')
+
+const nameFinal = () => {
+  if (splittedName.length > 1) {
+    return splittedName[splittedName.length - 1]
+  } else {
+    return splittedName[0]
+  }
+}
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
