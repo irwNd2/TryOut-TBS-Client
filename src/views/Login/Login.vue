@@ -25,8 +25,7 @@ const loginHandler = async () => {
   const { email, password } = form.value
   const { login } = useAuthStore()
   try {
-    const { data } = await login({ email, password })
-    console.log(data)
+    await login({ email, password })
   } catch (error) {
     console.log(error)
     loader.value = false

@@ -95,7 +95,6 @@ defineComponent({
 
 const { user } = useAuthStore()
 const splittedName = user?.name.split(' ')
-
 const nameFinal = () => {
   if (splittedName.length > 1) {
     return splittedName[splittedName.length - 1]

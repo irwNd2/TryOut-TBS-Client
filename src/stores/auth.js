@@ -15,10 +15,13 @@ const useAuthStore = defineStore('auth', {
           url: import.meta.env.VITE_BASE_CORE_URL + '/users/login',
           data: payload
         })
-        console.log(data)
         localStorage.setItem('token', data.access_token)
         this.user = data
         router.push('/home')
+        Toast({
+          icon: 'success',
+          title: 'Login berhasil'
+        })
       } catch (error) {
         Toast({
           icon: 'error',
