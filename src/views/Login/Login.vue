@@ -41,7 +41,9 @@ const schema = yup.object({
 </script>
 
 <template>
-  <div class="bg-sky-300 dark:bg-gray-700 flex flex-col mx-auto max-w-screen-2xl w-screen h-screen">
+  <div
+    class="bg-sky-300 dark:bg-gray-700 flex flex-col mx-auto max-w-screen-2xl w-screen h-screen md:h-[100vh]"
+  >
     <div class="w-full flex justify-end">
       <div
         class="mt-2 mr-2 w-[58px] h-[30px] bg-gray-200 dark:bg-gray-500 rounded-2xl shadow-lg cursor-pointer"
@@ -173,7 +175,7 @@ const schema = yup.object({
 }
 
 .dark-leave-to {
-  opacity: 0;
+  opacity: 0.6;
   transform: translateX(-20px);
 }
 
@@ -186,7 +188,7 @@ const schema = yup.object({
 }
 
 .light-leave-to {
-  opacity: 0;
+  opacity: 0.6;
   transform: translateX(20px);
 }
 

@@ -9,14 +9,13 @@
           </a>
         </div>
         <div class="md:flex md:items-center md:gap-12">
-          <nav aria-label="Site Nav" class="hidden md:block">
+          <!-- <nav aria-label="Site Nav" class="hidden md:block">
             <ul class="flex items-center gap-6 text-sm">
               <li>
                 <a class="text-gray-500 transition hover:text-gray-500/75" href="/"> Blog </a>
               </li>
             </ul>
-          </nav>
-
+          </nav> -->
           <div class="flex items-center gap-4">
             <div class="flex sm:gap-2">
               <div
@@ -120,7 +119,7 @@ defineProps({
 }
 
 .dark-leave-to {
-  opacity: 0;
+  opacity: 0.6;
   transform: translateX(-20px);
 }
 
@@ -133,7 +132,7 @@ defineProps({
 }
 
 .light-leave-to {
-  opacity: 0;
+  opacity: 0.6;
   transform: translateX(20px);
 }
 
