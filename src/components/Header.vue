@@ -113,3 +113,31 @@ defineProps({
   }
 })
 </script>
+
+<style>
+.dark-leave-from {
+  opacity: 1;
+}
+
+.dark-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.dark-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.light-leave-from {
+  opacity: 1;
+}
+
+.light-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.light-leave-active {
+  transition: all 0.2s ease-out;
+}
+</style>

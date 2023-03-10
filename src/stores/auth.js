@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { defineStore } from 'pinia'
-import { Toast } from '../utilities/swal'
-import router from '../router'
+import { Toast } from '@/utilities/swal'
+import router from '@/router'
 
 const useAuthStore = defineStore('auth', {
   state: () => ({

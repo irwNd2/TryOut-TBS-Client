@@ -1,5 +1,5 @@
 <template>
-  <footer aria-label="Site Footer" class="bg-white dark:bg-gray-700 md:hidden">
+  <footer aria-label="Site Footer" class="bg-white dark:bg-gray-700">
     <div class="flex justify-between px-8 fixed inset-x-0 bottom-0 p-2">
       <div class="flex flex-col items-center">
         <Icon icon="ic:baseline-home" class="text-black dark:text-white" width="30"></Icon>
