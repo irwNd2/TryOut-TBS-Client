@@ -10,7 +10,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'LandingHome',
-      component: LandingHome
+      component: LandingHome,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: '/login',
@@ -22,8 +25,33 @@ const router = createRouter({
     },
     {
       path: '/home',
-      name: 'Home',
-      component: Home,
+      children: [
+        {
+          path: '',
+          name: 'Home',
+          component: Home,
+          meta: {
+            breadcrumb: [{ name: 'Home', path: '' }]
+          }
+        },
+        {
+          path: 'tryouts',
+          name: 'TryOuts',
+          component: () => import('@/views/TryOuts/List.vue'),
+          meta: {
+            breadcrumb: [
+              {
+                name: 'Home',
+                path: ''
+              },
+              {
+                name: 'TryOuts',
+                path: '/home/tryouts'
+              }
+            ]
+          }
+        }
+      ],
       meta: {
         requiresAuth: true
       }

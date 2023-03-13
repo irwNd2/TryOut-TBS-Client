@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-300 rounded-md"></div>
+  <div class="bg-gray-300 dark:bg-gray-600 rounded-md"></div>
 </template>
 
 <script setup>

@@ -11,7 +11,7 @@
           class="text-black dark:text-white"
           width="30"
         ></Icon>
-        <h2 class="text-black dark:text-white">Try Out</h2>
+        <h2 class="text-black dark:text-white">Menu Belajar</h2>
       </div>
       <div class="flex flex-col items-center">
         <Icon icon="mdi:chat-help" class="text-black dark:text-white" width="30"></Icon>
