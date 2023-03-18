@@ -2,9 +2,8 @@ import { useQuery } from '@tanstack/vue-query'
 import { getTryOuts, getTryOut } from '@/services/TryOuts/TryOutServices'
 
 export const useTryOuts = ({ params }) => {
-  console.log('useTryOuts', params)
   return useQuery({
-    queryKey: ['ListTryouts'],
+    queryKey: ['ListTryouts', params],
     queryFn: async () => await getTryOuts({ ...params.query }),
     keepPreviousData: true,
     refetchOnWindowFocus: false
