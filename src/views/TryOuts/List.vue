@@ -7,18 +7,25 @@
 <script setup>
 import { defineComponent, ref, onMounted } from 'vue'
 import { useTryOuts } from './query'
+import { useRoute } from 'vue-router'
 
 defineComponent({
   name: 'TryOutsListPage'
 })
 
 onMounted(() => {
-  fetchTryOuts()
+  useTryOuts({
+    params: route
+  })
 })
 
+const route = useRoute()
+
 const tryOutsList = ref([])
-const fetchTryOuts = async () => {
-  const { data } = await useTryOuts({})
-  tryOutsList.value = data
+const { data } = useTryOuts({
+  params: route
+})
+if (data.value) {
+  tryOutsList.value = data.value
 }
 </script>

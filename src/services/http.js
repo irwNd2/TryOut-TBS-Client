@@ -1,8 +1,7 @@
-import applyCaseMiddleware from 'axios-case-converter'
 import axios from 'axios'
+import applyCaseMiddleware from 'axios-case-converter'
 
 const instance = applyCaseMiddleware(
-  console.log(import.meta.env.VITE_BASE_CORE_URL),
   axios.create({
     baseURL: import.meta.env.VITE_BASE_CORE_URL,
     headers: {
@@ -15,7 +14,7 @@ instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
     if (token) {
-      config.headers.access_token = token
+      config.headers['Authorization'] = `Bearer ${token}`
     }
     return config
   },
