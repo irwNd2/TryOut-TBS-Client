@@ -13,6 +13,7 @@
     </div>
     <div
       class="bg-white dark:bg-gray-700 hover:bg-sky-100 dark:hover:bg-gray-600 rounded-md w-[220px] py-2 flex flex-row px-2 cursor-pointer"
+      @click="logoutHandler()"
     >
       <span>
         <Icon
@@ -29,6 +30,13 @@
 
 <script setup>
 import { defineComponent } from 'vue'
+import { useAuthStore } from '../stores/auth'
+
+const { logout } = useAuthStore()
+
+const logoutHandler = async () => {
+  await logout()
+}
 
 defineComponent({
   name: 'ModalMenu'

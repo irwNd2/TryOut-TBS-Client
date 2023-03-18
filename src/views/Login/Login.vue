@@ -83,22 +83,22 @@ const schema = yup.object({
         </div>
       </div>
     </div>
-    <div class="mx-auto max-w-screen-xl px-4 py-16 md:py-6 sm:px-6 lg:px-8 dark:bg-gray-700">
+    <div class="mx-auto max-w-screen-xl px-4 py-16 md:py-6 sm:px-6 lg:px-8 dark:bg-gray-800">
       <div class="mx-auto max-w-lg md:w-min">
         <h1 class="text-center text-2xl font-bold sm:text-3xl text-black dark:text-white">
           TRYOUT TBS
         </h1>
 
         <p class="mx-auto mt-4 max-w-md text-center text-black dark:text-white">
-          Selamat datang di website Tryout TBS, silahkan masuk ke akun anda.
+          Selamat datang di website Tryout TBS
         </p>
 
         <Form
           :validation-schema="schema"
           @submit="loginHandler"
-          class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 dark:bg-gray-800 w-full md:w-min bg-white"
+          class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 dark:bg-gray-800 w-full md:w-min bg-white ring-1 ring-opacity-5 ring-black"
         >
-          <p class="text-center text-lg font-medium dark:text-white">Login</p>
+          <p class="text-center text-lg font-medium dark:text-white">Masuk Ke Akun Anda</p>
 
           <InputText label="Email" type="email" placeholder="Masukkan email" v-model="form.email">
             <template v-slot:icon>

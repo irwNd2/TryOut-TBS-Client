@@ -64,7 +64,11 @@
                 </Icon>
               </div>
 
-              <div class="hidden sm:flex sm:mt-2 w-[96px] h-[30px]" @click="toggleModalMenu()">
+              <div
+                class="hidden sm:flex sm:mt-2 w-[96px] h-[30px]"
+                @click="toggleModalMenu()"
+                ref="ignoreElRef"
+              >
                 <h2 class="dark:text-white cursor-pointer">{{ nameFinal() }}</h2>
                 <span>
                   <Icon
@@ -84,7 +88,7 @@
 
                 <div class="absolute right-0 p-1 mt-4 origin-top-right mr-36">
                   <transition name="modalMenu">
-                    <ModalMenu v-if="modalMenu" />
+                    <ModalMenu v-if="modalMenu" v-on-click-outside="onClickOutsideHandler" />
                   </transition>
                 </div>
               </div>
@@ -99,6 +103,7 @@
 <script setup>
 import { defineComponent, ref } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
+import { vOnClickOutside } from '@vueuse/components'
 import { useAuthStore } from '@/stores/auth'
 import ModalMenu from './ModalMenu.vue'
 
@@ -109,9 +114,17 @@ defineComponent({
 const modalMenu = ref(false)
 
 const toggleModalMenu = () => {
-  console.log(modalMenu.value)
   modalMenu.value = !modalMenu.value
 }
+
+const ignoreElRef = ref()
+const onClickOutsideHandler = [
+  (ev) => {
+    console.log(ev)
+    modalMenu.value = false
+  },
+  { ignore: [ignoreElRef] }
+]
 
 const { user } = useAuthStore()
 const splittedName = user?.name.split(' ')

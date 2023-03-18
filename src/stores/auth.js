@@ -28,6 +28,16 @@ const useAuthStore = defineStore('auth', {
           title: error.response.data.message
         })
       }
+    },
+
+    async logout() {
+      localStorage.removeItem('token')
+      this.user = {}
+      router.push('/login')
+      Toast({
+        icon: 'success',
+        title: 'Logout berhasil'
+      })
     }
   },
   persist: true
