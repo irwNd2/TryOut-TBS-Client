@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-gray-700 w-screen h-screen md:h-[100vh]">
+  <div class="bg-white dark:bg-gray-800 w-screen h-screen md:h-[100vh]">
     <Header />
     <div class="flex flex-row w-[100hw]">
       <div class="bg-white dark:bg-gray-700 h-full w-[10%]"></div>

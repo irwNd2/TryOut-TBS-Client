@@ -42,7 +42,7 @@ const schema = yup.object({
 
 <template>
   <div
-    class="bg-sky-300 dark:bg-gray-700 flex flex-col mx-auto max-w-screen-2xl w-screen h-screen md:h-[100vh]"
+    class="bg-sky-300 dark:bg-gray-800 flex flex-col mx-auto max-w-screen-2xl w-screen h-screen md:h-[100vh]"
   >
     <div class="w-full flex justify-end">
       <div

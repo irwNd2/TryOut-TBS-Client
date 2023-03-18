@@ -1,5 +1,5 @@
 <template>
-  <header aria-label="Site Header" class="bg-white dark:bg-gray-700">
+  <header aria-label="Site Header" class="bg-white dark:bg-gray-800 sticky top-0 w-screen mb-4">
     <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex-1 md:flex md:items-center md:gap-12">
@@ -64,16 +64,29 @@
                 </Icon>
               </div>
 
-              <div class="hidden sm:flex sm:mt-2">
-                <h2 class="dark:text-white">{{ nameFinal() }}</h2>
+              <div class="hidden sm:flex sm:mt-2 w-[96px] h-[30px]" @click="toggleModalMenu()">
+                <h2 class="dark:text-white cursor-pointer">{{ nameFinal() }}</h2>
                 <span>
                   <Icon
                     icon="material-symbols:keyboard-arrow-down"
                     class="text-gray-500 cursor-pointer"
                     width="25"
+                    v-if="!modalMenu"
                   >
                   </Icon>
+                  <Icon
+                    icon="material-symbols:keyboard-arrow-up"
+                    class="text-gray-500 cursor-pointer"
+                    width="25"
+                    v-if="modalMenu"
+                  ></Icon>
                 </span>
+
+                <div class="absolute right-0 p-1 mt-4 origin-top-right mr-36">
+                  <transition name="modalMenu">
+                    <ModalMenu v-if="modalMenu" />
+                  </transition>
+                </div>
               </div>
             </div>
           </div>
@@ -84,13 +97,21 @@
 </template>
 
 <script setup>
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
 import { useAuthStore } from '@/stores/auth'
+import ModalMenu from './ModalMenu.vue'
 
 defineComponent({
   name: 'HeaderComponent'
 })
+
+const modalMenu = ref(false)
+
+const toggleModalMenu = () => {
+  console.log(modalMenu.value)
+  modalMenu.value = !modalMenu.value
+}
 
 const { user } = useAuthStore()
 const splittedName = user?.name.split(' ')
@@ -137,6 +158,34 @@ defineProps({
 }
 
 .light-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.modalMenu-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.modalMenu-enter-to {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.modalMenu-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.modalMenu-leave-from {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.modalMenu-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.modalMenu-leave-active {
   transition: all 0.2s ease-out;
 }
 </style>
