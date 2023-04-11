@@ -70,7 +70,7 @@
                 <span>
                   <Icon
                     icon="material-symbols:keyboard-arrow-down"
-                    class="text-gray-500 cursor-pointer"
+                    class="text-black dark:text-gray-100 cursor-pointer"
                     width="25"
                   >
                   </Icon>
