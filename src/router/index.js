@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Login from '@/views/Login/Login.vue'
-import LandingHome from '@/views/LandingPage/LandingHome.vue'
-import Home from '@/views/Home/Home.vue'
+
+const Login = () => import('@/views/Login/Login.vue')
+const LandingHome = () => import('@/views/LandingHome/LandingHome.vue')
+const Home = () => import('@/views/Home/Home.vue')
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -9,17 +10,51 @@ const router = createRouter({
     {
       path: '/',
       name: 'LandingHome',
-      component: LandingHome
+      component: LandingHome,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: '/home',
-      name: 'Home',
-      component: Home
+      children: [
+        {
+          path: '',
+          name: 'Home',
+          component: Home,
+          meta: {
+            breadcrumb: [{ name: 'Home', path: '' }]
+          }
+        },
+        {
+          path: 'tryouts',
+          name: 'TryOuts',
+          component: () => import('@/views/TryOuts/List.vue'),
+          meta: {
+            breadcrumb: [
+              {
+                name: 'Home',
+                path: ''
+              },
+              {
+                name: 'TryOuts',
+                path: '/home/tryouts'
+              }
+            ]
+          }
+        }
+      ],
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/practice',
@@ -27,6 +62,20 @@ const router = createRouter({
       component: () => import('@/views/Practice/Practice.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    if (localStorage.getItem('token')) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else if (to.path === '/login' && localStorage.getItem('token')) {
+    next('/home')
+  } else {
+    next()
+  }
 })
 
 export default router
