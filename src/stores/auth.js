@@ -17,7 +17,7 @@ const useAuthStore = defineStore('auth', {
         })
         localStorage.setItem('token', data.access_token)
         this.user = data
-        router.push('/home')
+        router.push('/app')
         Toast({
           icon: 'success',
           title: 'Login berhasil'
