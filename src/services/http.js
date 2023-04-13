@@ -35,6 +35,7 @@ export const get = async (config, options) => {
 }
 
 export const post = async (config, options) => {
+  console.log(config)
   return request({ ...config, method: 'POST' }, options)
 }
 

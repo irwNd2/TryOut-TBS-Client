@@ -15,9 +15,9 @@
           </div>
           <div class="w-3/4 border-red-300 border rounded-md">
             <div class="p-4">
-              <form>
+              <form @submit="photoHandler">
                 <InputFile v-model="form.image" />
-                <button @submit="photoHandler">Submit</button>
+                <button type="submit">Submit</button>
               </form>
             </div>
           </div>
@@ -36,12 +36,14 @@ import Footer from '@/components/Footer.vue'
 import SideMenu from '@/layout/SideMenu.vue'
 import InputFile from '@/components/From/InputFile.vue'
 import { useRoute } from 'vue-router'
+import { useUpdatePhoto } from './query'
 
 defineComponent({
   name: 'ProfilePage'
 })
 
 const route = useRoute()
+const { mutate } = useUpdatePhoto()
 
 const form = ref({
   image: ''
@@ -55,7 +57,33 @@ const checkDescription = () => {
   if (title === 'Pengaturan Akun') return 'Berisi informasi akun, profil dan ubah password.'
 }
 
+// const photoHandler = () => {
+//   console.log('submit')
+//   const formData = new FormData()
+//   const blob = new Blob([form.value.image], { type: 'image/jpeg' })
+//   console.log('selected file:', blob)
+
+//   formData.append('photo', blob, 'image.jpg')
+//   mutate(formData, {
+//     onSuccess: () => {
+//       console.log('success')
+//     },
+//     onError: () => {
+//       console.log('error')
+//     }
+//   })
+// }
 const photoHandler = () => {
   console.log('submit')
+  const formData = new FormData()
+  formData.append('photo', form.value.image) // append the Blob directly to the FormData object
+  mutate(formData, {
+    onSuccess: () => {
+      console.log('success')
+    },
+    onError: () => {
+      console.log('error')
+    }
+  })
 }
 </script>
