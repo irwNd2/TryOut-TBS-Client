@@ -1,7 +1,13 @@
 <template>
   <ul class="flex flex-col overflow-auto">
     <div class="gap-2 flex flex-col justify-center items-center p-2">
-      <div class="border border-green-500 rounded-full w-[150px] h-[150px]"></div>
+      <div class="border border-green-500 rounded-full w-[150px] h-[150px] flex justify-center">
+        <img
+          :src="props.data?.data?.data?.imageUrl"
+          alt="profileImage"
+          class="w-[150px] rounded-full object-cover"
+        />
+      </div>
       <div>
         <h2 class="font-semibold dark:text-gray-50">{{ user.name }}</h2>
       </div>
@@ -28,6 +34,11 @@ defineComponent({
 })
 
 const { user } = useAuthStore()
+
+const props = defineProps({
+  data: Object,
+  default: () => {}
+})
 
 const menu = ref([
   {

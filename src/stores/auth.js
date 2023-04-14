@@ -38,6 +38,19 @@ const useAuthStore = defineStore('auth', {
         icon: 'success',
         title: 'Logout berhasil'
       })
+    },
+
+    async upload(file) {
+      const url = import.meta.env.VITE_BASE_CORE_URL + '/users/profile/photo'
+      const token = localStorage.getItem('token')
+      const { data } = await axios.post(url, file, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
+      })
+      router.push('/app/profile')
+      console.log(data)
     }
   },
   persist: true

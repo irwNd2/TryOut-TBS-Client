@@ -1,5 +1,5 @@
-import { useMutation } from '@tanstack/vue-query'
-import { updatePhoto } from '@/services/User/UserServices'
+import { useMutation, useQuery } from '@tanstack/vue-query'
+import { updatePhoto, getProfile } from '@/services/User/UserServices'
 
 export const useUpdatePhoto = () => {
   return useMutation({
@@ -8,5 +8,14 @@ export const useUpdatePhoto = () => {
       return res
     },
     onError: (error) => error
+  })
+}
+
+export const useProfile = () => {
+  return useQuery({
+    queryKey: ['ProfileDetail'],
+    queryFn: async () => await getProfile(),
+    keepPreviousData: true,
+    refetchOnWindowFocus: false
   })
 }

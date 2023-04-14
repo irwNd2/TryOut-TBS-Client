@@ -11,12 +11,12 @@
         </div>
         <div class="flex flex-row gap-3">
           <div class="w-1/4 border-gray-200 border rounded-md">
-            <SideMenu />
+            <SideMenu :data="data" />
           </div>
           <div class="w-3/4 border-red-300 border rounded-md">
             <div class="p-4">
               <form @submit="photoHandler">
-                <InputFile v-model="form.image" />
+                <InputFile @onChange="onChange" v-model="form.name" />
                 <button type="submit">Submit</button>
               </form>
             </div>
@@ -30,23 +30,29 @@
 </template>
 
 <script setup>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import SideMenu from '@/layout/SideMenu.vue'
 import InputFile from '@/components/From/InputFile.vue'
 import { useRoute } from 'vue-router'
-import { useUpdatePhoto } from './query'
+import { useProfile } from './query'
+import { useAuthStore } from '@/stores/auth'
 
 defineComponent({
   name: 'ProfilePage'
 })
 
+onMounted(() => {
+  useProfile()
+})
+
 const route = useRoute()
-const { mutate } = useUpdatePhoto()
+// const { mutate } = useUpdatePhoto()
 
 const form = ref({
-  image: ''
+  image: '',
+  name: ''
 })
 
 const checkTitle = () => {
@@ -56,6 +62,8 @@ const checkDescription = () => {
   const title = checkTitle()
   if (title === 'Pengaturan Akun') return 'Berisi informasi akun, profil dan ubah password.'
 }
+
+const { data } = useProfile()
 
 // const photoHandler = () => {
 //   console.log('submit')
@@ -73,17 +81,25 @@ const checkDescription = () => {
 //     }
 //   })
 // }
-const photoHandler = () => {
-  console.log('submit')
+
+const onChange = (file) => {
+  form.value.image = file
+}
+
+const photoHandler = async () => {
+  const { upload } = useAuthStore()
   const formData = new FormData()
   formData.append('photo', form.value.image) // append the Blob directly to the FormData object
-  mutate(formData, {
-    onSuccess: () => {
-      console.log('success')
-    },
-    onError: () => {
-      console.log('error')
-    }
-  })
+  // console.log(formData, form.value.image)
+  // mutate(formData, {
+  //   onSuccess: () => {
+  //     console.log('success')
+  //   },
+  //   onError: () => {
+  //     console.log('error')
+  //   }
+  // })
+  await upload(formData)
+  location.reload()
 }
 </script>
