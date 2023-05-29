@@ -4,6 +4,7 @@
   >
     <div
       class="bg-white dark:bg-gray-700 hover:bg-sky-100 dark:hover:bg-gray-600 rounded-md w-[220px] py-2 flex flex-row px-2 cursor-pointer"
+      @click="akun()"
     >
       <span>
         <Icon icon="ic:baseline-account-circle" class="text-black dark:text-white" width="25">
@@ -31,8 +32,10 @@
 <script setup>
 import { defineComponent } from 'vue'
 import { useAuthStore } from '../stores/auth'
+import { useRouter } from 'vue-router'
 
 const { logout } = useAuthStore()
+const router = useRouter()
 
 const logoutHandler = async () => {
   await logout()
@@ -41,4 +44,8 @@ const logoutHandler = async () => {
 defineComponent({
   name: 'ModalMenu'
 })
+
+const akun = () => {
+  router.push('/app/profile')
+}
 </script>

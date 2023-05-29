@@ -27,11 +27,12 @@
             <hr class="w-[150px] h-1 my-[0px] bg-[#253E80] border-0 rounded" />
           </div>
           <div class="w-[200px]">
-            <button
+            <RouterLink
+              to="/practice/dapil-dprd-provinsi"
               class="inline-block w-full p-4 bg-white focus:outline-none hover:text-gray-700 text-[#253E80] font-bold"
             >
               DAPIL DPRD PROVINSI
-            </button>
+            </RouterLink>
           </div>
           <div class="w-[250px]">
             <button

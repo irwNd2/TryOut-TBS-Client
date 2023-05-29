@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const Login = () => import('@/views/Login/Login.vue')
 const LandingHome = () => import('@/views/LandingPage/LandingHome.vue')
 const Home = () => import('@/views/Home/Home.vue')
+const ProfilePage = () => import('@/views/App/Profile/ProfilePage.vue')
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -47,6 +48,23 @@ const router = createRouter({
               {
                 name: 'TryOuts',
                 path: '/app/tryouts'
+              }
+            ]
+          }
+        },
+        {
+          path: 'profile',
+          name: 'ProfilePage',
+          component: ProfilePage,
+          meta: {
+            breadcrumb: [
+              {
+                name: 'Home',
+                path: ''
+              },
+              {
+                name: 'Profile Page',
+                path: '/app/profile'
               }
             ]
           }
