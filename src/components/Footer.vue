@@ -1,17 +1,17 @@
 <template>
-  <footer aria-label="Site Footer" class="bg-white dark:bg-gray-700">
+  <footer aria-label="Site Footer" class="bg-white dark:bg-gray-700 md:hidden">
     <div class="flex justify-between px-8 fixed inset-x-0 bottom-0 p-2">
       <div class="flex flex-col items-center">
         <Icon icon="ic:baseline-home" class="text-black dark:text-white" width="30"></Icon>
         <h2 class="text-black dark:text-white">Home</h2>
       </div>
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center" @click="clickBelajar">
         <Icon
           icon="fluent:learning-app-24-filled"
           class="text-black dark:text-white"
           width="30"
         ></Icon>
-        <h2 class="text-black dark:text-white">Menu Belajar</h2>
+        <h2 class="text-black dark:text-white">Belajar</h2>
       </div>
       <div class="flex flex-col items-center">
         <Icon icon="mdi:chat-help" class="text-black dark:text-white" width="30"></Icon>
@@ -34,5 +34,12 @@ import { defineComponent } from 'vue'
 
 defineComponent({
   name: 'FooterComponent'
+})
+
+defineProps({
+  clickBelajar: {
+    type: Function,
+    default: () => {}
+  }
 })
 </script>

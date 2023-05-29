@@ -4,7 +4,7 @@
       :icon="icon"
       class="text-black dark:text-white md:w-[80px] md:h-[80px] w-[40px] h-[40px] ml-2 md:ml-0"
     ></Icon>
-    <span class="">
+    <span>
       <h2 class="dark:text-white text-base md:text-lg font-medium md:ml-2">{{ label }}</h2>
     </span>
   </div>

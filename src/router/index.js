@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const Login = () => import('@/views/Login/Login.vue')
-const LandingHome = () => import('@/views/LandingHome/LandingHome.vue')
+const LandingHome = () => import('@/views/LandingPage/LandingHome.vue')
 const Home = () => import('@/views/Home/Home.vue')
 
 const router = createRouter({
@@ -24,7 +24,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/home',
+      path: '/app',
       children: [
         {
           path: '',
@@ -46,7 +46,7 @@ const router = createRouter({
               },
               {
                 name: 'TryOuts',
-                path: '/home/tryouts'
+                path: '/app/tryouts'
               }
             ]
           }
@@ -72,7 +72,7 @@ router.beforeEach((to, from, next) => {
       next('/login')
     }
   } else if (to.path === '/login' && localStorage.getItem('token')) {
-    next('/home')
+    next('/app')
   } else {
     next()
   }

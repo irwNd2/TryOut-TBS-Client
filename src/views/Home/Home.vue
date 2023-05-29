@@ -17,7 +17,7 @@
                 icon="healthicons:i-exam-multiple-choice-outline"
                 label="Try Out"
                 class="cursor-pointer hover:-translate-y-1 w-[80px] transition ease-in-out delay-150"
-                @click="() => router.push('/home/tryouts')"
+                @click="() => router.push('/app/tryouts')"
               />
             </div>
           </div>
@@ -25,21 +25,34 @@
       </div>
       <div class="bg-white dark:bg-gray-700 h-full w-[10%]"></div>
     </div>
-    <Footer class="md:hidden" />
+    <Footer :clickBelajar="clickBelajarMenu" />
+    <MobileMenu :isOpen="mobileMenuOpen" v-if="mobileMenuOpen" v-on-click-outside="clickOutside" />
   </div>
 </template>
 
 <script setup>
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import Spotlight from '@/components/Spotlight.vue'
 import MenuIcon from '@/components/MenuIcon.vue'
 import { useRouter } from 'vue-router'
+import MobileMenu from '@/components/UI/MobileMenu.vue'
+import { vOnClickOutside } from '@vueuse/components'
 
 defineComponent({
   name: 'HomePage'
 })
 
 const router = useRouter()
+
+const mobileMenuOpen = ref(false)
+
+const clickBelajarMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+}
+
+const clickOutside = () => {
+  mobileMenuOpen.value = false
+}
 </script>
